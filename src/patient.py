@@ -17,7 +17,7 @@ class PatientRecord:
     def __init__(self):
         self.patients = []
     
-# includes two methods, add_patient and high_risk_patients
+# includes two methods, add_patient, high_risk_patients, 
     def add_patient(self, patient):
         self.patients.append(patient)
 # the following method incorporates a list comprehension, which is a compact way of building a list based on an existing iterable. It iterates through the list of patients and selects those who have heart disease and a cholesterol level greater than 240, returning a new list of high-risk patients.
@@ -28,6 +28,21 @@ class PatientRecord:
 #            result.append(p)
 #    return result
 
+    
+
     def high_risk_patients(self):
         return [p for p in self.patients if p.has_heart_disease and p.cholesterol > 240]
             
+
+def triage(patient):
+        match patient.chest_pain_type:
+            case "typical angina":
+                return "High risk"
+            case "atypical angina":
+                return "Moderate risk"
+            case "non-anginal pain":
+                return "Low risk"
+            case "asymptomatic":
+                return "Minimal risk"
+            case _:
+                return "Unknown risk" 
