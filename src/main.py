@@ -26,8 +26,8 @@ record = PatientRecord.load_from_csv("data/processed/heart_cleaned.csv")
 
 print()
 print("patient triage:")
-for patient in record.patients[:20]: # just the first 20 itmems, 0 through 19
-    print(f"Patient {patient.patient_id}: {record.triage(patient)}") # prints the triage results for each patient, showing their risk level based on their chest pain type.
+for patient in record.patients[:20]: # just the first 20 items, 0 through 19
+    print(f"Patient {patient.patient_id}: {PatientRecord.triage(patient)}") # prints the triage results for each patient, showing their risk level based on their chest pain type.
 
 high_risk = record.high_risk_patients() # calls the high_risk_patients method 
 print("High-risk patients:") # prints a message indicating that the following output will be a triage of patients based on their risk level.

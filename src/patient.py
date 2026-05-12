@@ -1,7 +1,9 @@
 # !/usr/bin/env python3
 # defines a Patient class with attributes for name, age, cholesterol level, chest-pain type, and heart disease status.
 import pandas as pd
-"""
+
+class Patient:
+    """Patient class: blueprint for patients entering the cardiovascular unit.
 :param patient_id: unique identifier for the patient
 :type patient_id: int
 :param age: patient age in years
@@ -29,7 +31,6 @@ import pandas as pd
 :param st_slope: slope of peak exercise ST segment (Up, Flat, Down)
 :type st_slope: str
 """
-class Patient:
     def __init__(self, patient_id, age, sex, resting_bp, cholesterol, fasting_bs, max_hr, exercise_angina, 
                  oldpeak, heart_disease, chest_pain_type, 
                  resting_ecg, st_slope):
@@ -49,7 +50,7 @@ class Patient:
 # includes a method to summarize the patient's risk factors and heart disease status.    
     def risk_summary(self):
         status = 'diagnosed' if self.heart_disease == 1 else 'clear'
-        print(f"Patient {int(self.patient_id)} | Age: {int(self.age)} | "
+        return(f"Patient {int(self.patient_id)} | Age: {int(self.age)} | "
           f"Cholesterol: {self.cholesterol} mg/dL | "
           f"Chest pain: {self.chest_pain_type} | "
           f"Heart disease: {status}")
@@ -98,7 +99,8 @@ class PatientRecord:
         return [p for p in self.patients if p.heart_disease == 1 and p.cholesterol > 240]
             
 # uses match to apply a risk tag to patients for which this method is called
-    def triage(self, patient):
+    @staticmethod
+    def triage(patient):
             match patient.chest_pain_type:
                 case "TA":
                     return "High risk"
